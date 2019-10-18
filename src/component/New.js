@@ -7,7 +7,7 @@ export default class New extends React.Component {
     render() {
         return (
             // eslint-disable-next-line react/jsx-no-comment-textnodes
-            <h1>我是New</h1>
+            <h1>我是New{this.props.match.params.id}</h1>
         )
     }
 

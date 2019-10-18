@@ -3,10 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import Search from './component/search';
-import List from './component/list';
+//import List from './component/list';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import About from './component/About';
 import Home from './component/Home';
+import WrappedNormalLoginForm from './component/NormalLoginForm';
+import { List, Avatar } from 'antd';
 // function App() {
 
 
@@ -79,8 +81,27 @@ class App extends React.Component {
 
   }
 
+
+
+
   render() {
     let { loadding, repName, link_Url } = this.state;
+
+    const data = [
+      {
+        title: 'Ant Design Title 1',
+      },
+      {
+        title: 'Ant Design Title 2',
+      },
+      {
+        title: 'Ant Design Title 3',
+      },
+      {
+        title: 'Ant Design Title 4',
+      },
+    ];
+
 
 
     return (
@@ -101,44 +122,67 @@ class App extends React.Component {
       //   <List />
       // </div>
 
-      //例子三
-      <div className="App">
-        <h1>react-router Dome </h1>
-        <hr></hr>
-        <div className="content">
 
 
-          <div className="titleLable">
-            <div className="titleDiv">
-              {/* <p className="title">about</p> */}
-              <NavLink to='/about' className="title active" activeClassName="activeTime ">About</NavLink>
+      //例子三   路由组件 以及路由组件的传参 broswerRouter  hashRouter  Router  link  nalink  switch  redict  params传参  props传参 
+      // <div className="App">
+      //   <h1>react-router Dome </h1>
+      //   <hr></hr>
+      //   <div className="content">
 
 
-            </div>
-            <div className="titleDiv" >
-              {/* <p className="title">home</p> */}
-              <NavLink to='/home' className="title" activeClassName="activeTime" >home</NavLink>
-            </div>
-
-          </div>
-          <div className="rightcontent">
-
-            <Switch>
-              <Route path='/about' component={About}></Route>
-              <Route path='/home' component={Home}></Route>
-              <Redirect from='/' to='/about'></Redirect>
-            </Switch>
+      //     <div className="titleLable">
+      //       <div className="titleDiv">
+      //         {/* <p className="title">about</p> */}
+      //         <NavLink to='/about' className="title active" activeClassName="activeTime ">About</NavLink>
 
 
-          </div>
-        </div>
+      //       </div>
+      //       <div className="titleDiv" >
+      //         {/* <p className="title">home</p> */}
+      //         <NavLink to='/home' className="title" activeClassName="activeTime" >home</NavLink>
+      //       </div>
+
+      //     </div>
+      //     <div className="rightcontent">
+
+      //       <Switch>
+      //         <Route path='/about' component={About}></Route>
+      //         <Route path='/home' component={Home}></Route>
+      //         <Redirect from='/' to='/about'></Redirect>
+      //       </Switch>
 
 
+      //     </div>
+      //   </div>
+
+
+
+
+      // </div>
+
+      // <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flex: 1, }} >
+      //   <WrappedNormalLoginForm></WrappedNormalLoginForm>
+      // </div >
+
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flex: 1, }} >
+        <List
+          size="middle"
+          itemLayout="horizontal"
+          dataSource={data}
+          renderItem={item => (
+            <List.Item>
+              <List.Item.Meta
+                avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                title={<a href="https://ant.design">{item.title}</a>}
+                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+              />
+            </List.Item>
+          )}
+        />
 
 
       </div>
-
-
 
     );
 
