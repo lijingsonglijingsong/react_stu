@@ -8,7 +8,10 @@ import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import About from './component/About';
 import Home from './component/Home';
 import WrappedNormalLoginForm from './component/NormalLoginForm';
-import { List, Avatar } from 'antd';
+import { List, Avatar, Button } from 'antd';
+import { incrementAction, decrementAction } from "./redux/actions";
+import store from "./redux/store";
+import Login from "./component/login"
 // function App() {
 
 
@@ -165,29 +168,55 @@ class App extends React.Component {
       //   <WrappedNormalLoginForm></WrappedNormalLoginForm>
       // </div >
 
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flex: 1, }} >
-        <List
-          size="middle"
-          itemLayout="horizontal"
-          dataSource={data}
-          renderItem={item => (
-            <List.Item>
-              <List.Item.Meta
-                avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                title={<a href="https://ant.design">{item.title}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              />
-            </List.Item>
-          )}
-        />
 
+      // react-redux  antd 
 
+      // <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flex: 1, }} >
+      //   <List
+      //     size="middle"
+      //     itemLayout="horizontal"
+      //     dataSource={data}
+      //     renderItem={item => (
+      //       <List.Item>
+      //         <List.Item.Meta
+      //           avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+      //           title={<a href="https://ant.design">{item.title}</a>}
+      //           description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+      //         />
+      //       </List.Item>
+      //     )}
+      //   />
+
+      //   <div>
+      //     <Button onClick={this.handerle}> gaag</Button>
+      //   </div>
+
+      // </div>
+
+      <div className="App">
+        <Login></Login>
       </div>
-
     );
 
 
 
+
+  }
+
+  // eslint-disable-next-line no-dupe-class-members
+  componentDidMount() {
+    console.log("the state =", this.props.store.getState());
+  }
+  handerle = () => {
+    let cont = 1;
+    // 生成action
+    let act = incrementAction(cont);
+
+    //分发action
+
+    this.props.store.dispatch(act);
+
+    console.log("the state =", this.props.store.getState());
   }
 }
 
